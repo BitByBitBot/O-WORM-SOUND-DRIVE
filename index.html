@@ -21,16 +21,16 @@
     html,body{ height:100%; }
     html{
       background-color:var(--bg);
-      background-image:url('background.png');
-      background-position:center;
-      background-repeat:no-repeat;
-      background-size:cover;
     }
     body{
       margin:0;
       font-family: Georgia, "Times New Roman", Times, serif;
-      background-color:transparent;
-      min-height:100dvh;
+      background-color:var(--bg);
+      background-image:url('background.png');
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size:cover;
+      min-height:100vh;
       color:var(--fg);
       -webkit-font-smoothing: antialiased;
     }
@@ -159,8 +159,21 @@
       font:inherit;
       cursor:pointer;
       min-height:44px;
+      text-align:center;
     }
     .btn.secondary{ opacity:0.8; }
+    .btn.link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 18px;
+      font-size:15px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      border-width:2px;
+      text-decoration:none;
+    }
 
     .status{
       font-size:13px;
@@ -231,10 +244,9 @@ If you do not agree to these terms, please do not send audio.</div>
       <section data-view="about">
         <h2>ABOUT</h2>
         <div class="panel">
-          <p>This portal collects original sounds for a community sample release.</p>
-          <p class="muted">Free to the public. Shared freely online.</p>
-          <div class="rule"></div>
-          <p class="tiny muted">If you want to include a first name for credits, add it in the email body.</p>
+          <p>O,WORM is an esoteric genre-defying art-rap duo made up of King Bird (Gideon Parker) and BitByBitBot (Arlo Robbins). Along with their upcoming release, O,WORM 2, the two wanted to bring their love of samples and field recording to their local communities through an open-source sound library for anyone to use!</p>
+          <p class="muted">Listen to the first O’WORM album here:</p>
+          <a class="btn link" href="https://linktr.ee/owormtheband" target="_blank" rel="noreferrer">O’WORM Listening Hub</a>
         </div>
       </section>
     </main>
