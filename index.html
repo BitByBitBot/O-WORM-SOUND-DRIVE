@@ -32,6 +32,7 @@
       background-size:cover;
       min-height:100vh;
       color:var(--fg);
+      text-align:center;
       -webkit-font-smoothing: antialiased;
     }
     a{ color:inherit; text-decoration:none; border-bottom:1px solid currentColor; }
@@ -180,10 +181,27 @@
     }
     .emailRow{
       display:flex;
-      flex-wrap:wrap;
-      gap:14px;
+      flex-direction:column;
+      gap:6px;
       align-items:center;
-      justify-content:space-between;
+      width:100%;
+    }
+
+    .emailAddr{
+      display:block;
+      width:100%;
+      font-size:24px;
+      color:#c00000;
+    }
+
+    .emailActions{
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      gap:14px;
+      width:100%;
+    }
+    .emailActions .btn{
+      width:100%;
     }
 
     .btn{
@@ -281,13 +299,12 @@ If you do not agree to these terms, please do not send audio.</div>
         <div class="panel">
           <div class="emailBox">
             <div class="emailRow">
-              <div><span class="tiny muted">SEND TO</span><br><strong id="emailAddr">owormtheband@gmail.com</strong>
-				  
-			  
-			  <div class="emailRow">
-				  </div>
-              <button id="copyBtn" class="btn secondary" type="button">COPY</button>
+              <span class="tiny muted">SEND TO</span>
+              <strong id="emailAddr" class="emailAddr">owormtheband@gmail.com</strong>
+            </div>
+            <div class="emailActions">
               <button id="openMailBtn" class="btn" type="button">OPEN EMAIL APP</button>
+              <button id="copyBtn" class="btn secondary" type="button">COPY</button>
             </div>
             <p class="tiny muted">On iOS, the button opens Mail. Attach your file and hit send.</p>
 
@@ -301,6 +318,7 @@ Submissions will be curated, and not all sounds may appear in the final release.
 
 If you do not agree to these terms, please do not send audio.</div>
           </details>
+        </div>
         </div>
       </section>
 
