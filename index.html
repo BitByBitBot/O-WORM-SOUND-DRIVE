@@ -24,7 +24,7 @@
     }
     body{
       margin:0;
-      font-family: Georgia, "Times New Roman", Times, serif;
+      font-family: Verdana, "Helvetica Neue", Arial, sans-serif;
       background-color:var(--bg);
       background-image:url('background.jpg');
       background-position:center;
@@ -139,7 +139,10 @@
     .agreement-overlay{
       position:fixed;
       inset:0;
-      background:rgba(249, 248, 246, 0.96);
+      background-image:url('background.jpg');
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size:cover;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -152,7 +155,7 @@
     .agreement-modal{
       width:min(760px, 100%);
       border:2px solid var(--border);
-      background:var(--bg);
+      background:rgba(249, 248, 246, 0.96);
       padding:24px;
       display:flex;
       flex-direction:column;
@@ -214,6 +217,23 @@
       min-height:1.2em;
     }
 
+    .agreements-toggle{
+      border-top:1px solid var(--border);
+      padding-top:12px;
+      font-size:14px;
+    }
+    .agreements-toggle summary{
+      cursor:pointer;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.04em;
+    }
+    .agreements-toggle .agreement{
+      margin-top:12px;
+      border-left:2px solid var(--border);
+      padding-left:12px;
+    }
+
     footer{
       font-size:12px;
       color:var(--muted);
@@ -258,11 +278,26 @@ If you do not agree to these terms, please do not send audio.</div>
 
     <main>
       <section data-view="submit" class="active">
-        <h1>Agreements</h1>
-        <p class="muted">Read this first. Then send your file to the email below.</p>
+        <h1>Submit</h1>
+        <p class="muted">Send your file to the email below. Agreements are available underneath if needed.</p>
 
-        <div class="grid">
-          <div class="panel">
+        <div class="panel">
+          <h2>Email</h2>
+          <div class="emailBox">
+            <div class="emailRow">
+              <div><span class="tiny muted">SEND TO</span><br><strong id="emailAddr">owormtheband@gmail.com</strong></div>
+              <button id="copyBtn" class="btn secondary" type="button">COPY</button>
+            </div>
+            <div class="emailRow">
+              <button id="openMailBtn" class="btn" type="button">OPEN EMAIL APP</button>
+            </div>
+            <p class="tiny muted">On iOS, the button opens Mail. Attach your file and hit send.</p>
+          </div>
+
+          <div id="status" class="status" aria-live="polite">Waiting.</div>
+
+          <details class="agreements-toggle">
+            <summary>View submission agreements</summary>
             <div class="agreement" id="agreementsTextInline">By sending audio to this address, you confirm that you created it and that you grant permission for it to be publicly released as part of a free public sample collection.
 
 Submitted audio may be shared freely online and used by others.
@@ -270,25 +305,8 @@ Submitted audio may be shared freely online and used by others.
 Submissions will be curated, and not all sounds may appear in the final release.
 
 If you do not agree to these terms, please do not send audio.</div>
-            <div class="rule"></div>
             <p class="tiny muted">Tip: short fragments are best. Any format is okay.</p>
-          </div>
-
-          <div class="panel">
-            <h2>Email</h2>
-            <div class="emailBox">
-              <div class="emailRow">
-                <div><span class="tiny muted">SEND TO</span><br><strong id="emailAddr">owormtheband@gmail.com</strong></div>
-                <button id="copyBtn" class="btn secondary" type="button">COPY</button>
-              </div>
-              <div class="emailRow">
-                <button id="openMailBtn" class="btn" type="button">OPEN EMAIL APP</button>
-              </div>
-              <p class="tiny muted">On iOS, the button opens Mail. Attach your file and hit send.</p>
-            </div>
-
-            <div id="status" class="status" aria-live="polite">Waiting.</div>
-          </div>
+          </details>
         </div>
       </section>
 
