@@ -136,6 +136,36 @@
       white-space:pre-wrap;
     }
 
+    .agreement-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(249, 248, 246, 0.96);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      z-index:1000;
+    }
+    .agreement-overlay[aria-hidden="true"]{
+      display:none;
+    }
+    .agreement-modal{
+      width:min(760px, 100%);
+      border:2px solid var(--border);
+      background:var(--bg);
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
+    }
+    .agreement-modal h2{
+      font-size:28px;
+    }
+    .agreement-modal .btn{
+      align-self:flex-start;
+    }
+
     .emailBox{
       padding:14px 0;
       display:flex;
@@ -193,9 +223,27 @@
 
     [data-view]{ display:none; }
     [data-view].active{ display:block; }
+
+    body.is-locked{
+      overflow:hidden;
+    }
   </style>
 </head>
 <body>
+  <div class="agreement-overlay" id="agreementOverlay" role="dialog" aria-modal="true" aria-hidden="false">
+    <div class="agreement-modal" role="document" aria-labelledby="agreementTitle">
+      <h2 id="agreementTitle">Submission Agreement</h2>
+      <p class="muted">Please review the submission terms before continuing.</p>
+      <div class="agreement" id="agreementsText">By sending audio to this address, you confirm that you created it and that you grant permission for it to be publicly released as part of a free public sample collection.
+
+Submitted audio may be shared freely online and used by others.
+
+Submissions will be curated, and not all sounds may appear in the final release.
+
+If you do not agree to these terms, please do not send audio.</div>
+      <button id="agreeBtn" class="btn" type="button">I have read and agree to the submission terms</button>
+    </div>
+  </div>
   <div class="wrap">
     <header>
       <div class="brand">
@@ -215,7 +263,7 @@
 
         <div class="grid">
           <div class="panel">
-            <div class="agreement" id="agreementsText">By sending audio to this address, you confirm that you created it and that you grant permission for it to be publicly released as part of a free public sample collection.
+            <div class="agreement" id="agreementsTextInline">By sending audio to this address, you confirm that you created it and that you grant permission for it to be publicly released as part of a free public sample collection.
 
 Submitted audio may be shared freely online and used by others.
 
@@ -282,6 +330,8 @@ If you do not agree to these terms, please do not send audio.</div>
     if (location.hash.includes('about')) setView('about');
     else setView('submit');
 
+    const agreementOverlay = $("agreementOverlay");
+    const agreeBtn = $("agreeBtn");
     const emailAddrEl = $("emailAddr");
     const copyBtn = $("copyBtn");
     const openMailBtn = $("openMailBtn");
@@ -327,6 +377,13 @@ If you do not agree to these terms, please do not send audio.</div>
       window.location.href = mailto;
       setStatus('Opening email app…');
     });
+
+    agreeBtn.addEventListener('click', () => {
+      agreementOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-locked');
+    });
+
+    document.body.classList.add('is-locked');
 
     // --- lightweight self-tests (console) ---
     // These prevent regressions like "Invalid or unexpected token" in the mailto builder.
