@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>O,WORM — Submission Portal (Layout)</title>
+  <style>
+    :root{
+      --bg:#f9f8f6;            /* bone / parchment */
+      --fg:#111;
+      --muted:#6b6b6b;
+      --border:#111;
+      --pad:18px;
+      --max: 720px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      background:var(--bg);
+      color:var(--fg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a{ color:inherit; text-decoration:none; border-bottom:1px solid currentColor; }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      padding: calc(env(safe-area-inset-top) + var(--pad)) calc(env(safe-area-inset-right) + var(--pad))
+               calc(env(safe-area-inset-bottom) + var(--pad)) calc(env(safe-area-inset-left) + var(--pad));
+      gap: 20px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    header{
+      padding-bottom: 8px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+    .kicker{
+      font-size:11px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .title{
+      font-size:20px;
+      letter-spacing:0.02em;
+    }
+
+    .nav{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .nav button{
+      appearance:none;
+      border:none;
+      background:none;
+      color:var(--fg);
+      font:inherit;
+      font-size:14px;
+      cursor:pointer;
+      padding:6px 0;
+      border-bottom:1px solid transparent;
+    }
+    .nav button[aria-current="page"]{
+      border-bottom:1px solid var(--fg);
+    }
+
+    main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap: 24px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    @media (min-width: 720px){
+      .grid{
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    .panel{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    h1,h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+    }
+    p{ margin:0; line-height:1.55; }
+    .muted{ color:var(--muted); }
+    .tiny{ font-size:12px; }
+
+    .agreement{
+      font-size:15px;
+      line-height:1.65;
+      white-space:pre-wrap;
+    }
+
+    .emailBox{
+      padding:14px 0;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      word-break: break-word;
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+    .emailRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .btn{
+      appearance:none;
+      background:none;
+      border:1px solid var(--border);
+      color:var(--fg);
+      padding:10px 14px;
+      font:inherit;
+      cursor:pointer;
+      min-height:44px;
+    }
+    .btn.secondary{ opacity:0.8; }
+
+    .status{
+      font-size:13px;
+      color:var(--muted);
+      min-height:1.2em;
+    }
+
+    footer{
+      font-size:12px;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      padding-top:12px;
+    }
+
+    [data-view]{ display:none; }
+    [data-view].active{ display:block; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="kicker">PUBLIC INTAKE</div>
+        <div class="title">O,WORM — SAMPLE SUBMISSION</div>
+      </div>
+      <nav class="nav" aria-label="Site">
+        <button id="navSubmit" type="button">SUBMIT</button>
+        <button id="navAbout" type="button">ABOUT</button>
+      </nav>
+    </header>
+
+    <main>
+      <section data-view="submit" class="active">
+        <h1>AGREEMENTS</h1>
+        <p class="muted">Read this first. Then send your file to the email below.</p>
+
+        <div class="grid">
+          <div class="panel">
+            <div class="agreement" id="agreementsText">By sending audio to this address, you confirm that you created it and that you grant permission for it to be publicly released as part of a free public sample collection.
+
+Submitted audio may be shared freely online and used by others.
+
+Submissions will be curated, and not all sounds may appear in the final release.
+
+If you do not agree to these terms, please do not send audio.</div>
+            <div class="rule"></div>
+            <p class="tiny muted">Tip: short fragments are best. Any format is okay.</p>
+          </div>
+
+          <div class="panel">
+            <h2>EMAIL</h2>
+            <div class="emailBox">
+              <div class="emailRow">
+                <div><span class="tiny muted">SEND TO</span><br><strong id="emailAddr">samples@yourdomain.com</strong></div>
+                <button id="copyBtn" class="btn secondary" type="button">COPY</button>
+              </div>
+              <div class="emailRow">
+                <button id="openMailBtn" class="btn" type="button">OPEN EMAIL APP</button>
+              </div>
+              <p class="tiny muted">On iOS, the button opens Mail. Attach your file and hit send.</p>
+            </div>
+
+            <div id="status" class="status" aria-live="polite">Waiting.</div>
+          </div>
+        </div>
+      </section>
+
+      <section data-view="about">
+        <h2>ABOUT</h2>
+        <div class="panel">
+          <p>This portal collects original sounds for a community sample release.</p>
+          <p class="muted">Free to the public. Shared freely online.</p>
+          <div class="rule"></div>
+          <p class="tiny muted">If you want to include a name/handle for credits, add it in the email body.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Layout-only starter. Replace <strong>samples@yourdomain.com</strong> with your real email.
+    </footer>
+  </div>
+
+  <script>
+  (() => {
+    const $ = (id) => document.getElementById(id);
+
+    const navSubmit = $("navSubmit");
+    const navAbout  = $("navAbout");
+
+    const views = {
+      submit: document.querySelector('[data-view="submit"]'),
+      about:  document.querySelector('[data-view="about"]')
+    };
+
+    function setView(name){
+      for (const k of Object.keys(views)) views[k].classList.remove('active');
+      views[name].classList.add('active');
+      navSubmit.setAttribute('aria-current', name === 'submit' ? 'page' : 'false');
+      navAbout.setAttribute('aria-current',  name === 'about'  ? 'page' : 'false');
+      history.replaceState(null, '', name === 'submit' ? '#/' : '#/about');
+    }
+
+    navSubmit.addEventListener('click', () => setView('submit'));
+    navAbout.addEventListener('click',  () => setView('about'));
+
+    if (location.hash.includes('about')) setView('about');
+    else setView('submit');
+
+    const emailAddrEl = $("emailAddr");
+    const copyBtn = $("copyBtn");
+    const openMailBtn = $("openMailBtn");
+    const status = $("status");
+
+    // === EDIT THESE ===
+    const TO_EMAIL = emailAddrEl.textContent.trim();
+    const SUBJECT = "O,WORM sample submission";
+
+    // Build the prefilled email body safely.
+    // IMPORTANT: keep this as a normal JS string (no raw line breaks inside quotes).
+    const AGREEMENTS = $("agreementsText").textContent.trim();
+    const BODY = [
+      AGREEMENTS,
+      "---",
+      "(Optional) Name / handle for credit:",
+      "(Optional) Notes about the sound:",
+      ""
+    ].join("\n\n");
+
+    function setStatus(msg){ status.textContent = msg; }
+
+    function buildMailto(to, subject, body){
+      // Encode each component to avoid invalid characters.
+      const qs = new URLSearchParams({
+        subject: subject || "",
+        body: body || ""
+      });
+      return `mailto:${encodeURIComponent(to)}?${qs.toString()}`;
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(TO_EMAIL);
+        setStatus('Copied email address.');
+      } catch {
+        setStatus('Copy failed. Select the email and copy manually.');
+      }
+    });
+
+    openMailBtn.addEventListener('click', () => {
+      const mailto = buildMailto(TO_EMAIL, SUBJECT, BODY);
+      window.location.href = mailto;
+      setStatus('Opening email app…');
+    });
+
+    // --- lightweight self-tests (console) ---
+    // These prevent regressions like "Invalid or unexpected token" in the mailto builder.
+    (function runTests(){
+      try {
+        const t1 = buildMailto('test@example.com', 'hello', 'line1\nline2');
+        console.assert(t1.startsWith('mailto:'), 'mailto should start with mailto:');
+        console.assert(t1.includes('subject='), 'mailto should include subject');
+        console.assert(t1.includes('body='), 'mailto should include body');
+
+        const t2 = buildMailto('x@y.z', 'a&b', 'weird chars: % & ? # \n ok');
+        console.assert(!t2.includes(' '), 'mailto should not include raw spaces');
+      } catch(e) {
+        console.warn('Self-tests failed:', e);
+      }
+    })();
+
+  })();
+  </script>
+</body>
+</html>
