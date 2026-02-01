@@ -123,7 +123,7 @@
       letter-spacing:0.04em;
       text-transform:capitalize;
       font-family:"Astloch", "Times New Roman", Times, serif;
-      font-weight:400;
+      font-weight:700;
 	  
     }
     p{ margin:0; line-height:1.55; }
@@ -175,13 +175,13 @@
       flex-direction:column;
       gap:14px;
       word-break: break-word;
-      border-top:1px solid var(--border);
+      border-top:0px solid var(--border);
       border-bottom:1px solid var(--border);
     }
     .emailRow{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
+      gap:14px;
       align-items:center;
       justify-content:space-between;
     }
@@ -194,7 +194,7 @@
       padding:10px 14px;
       font:inherit;
       cursor:pointer;
-      min-height:44px;
+      min-height:30px;
       text-align:center;
     }
     .btn.secondary{ opacity:0.8; }
@@ -267,7 +267,6 @@ If you do not agree to these terms, please do not send audio.</div>
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="kicker">PUBLIC INTAKE</div>
         <div class="title">O,Worm — Sample Submission</div>
       </div>
       <nav class="nav" aria-label="Site">
@@ -278,23 +277,19 @@ If you do not agree to these terms, please do not send audio.</div>
 
     <main>
       <section data-view="submit" class="active">
-        <h1>Submit</h1>
-        <p class="muted">Send your file to the email below. Agreements are available underneath if needed.</p>
 
         <div class="panel">
-          <h2>Email</h2>
           <div class="emailBox">
             <div class="emailRow">
-              <div><span class="tiny muted">SEND TO</span><br><strong id="emailAddr">owormtheband@gmail.com</strong></div>
+              <div><span class="tiny muted">SEND TO</span><br><strong id="emailAddr">owormtheband@gmail.com</strong>
+				  
+			  
+			  <div class="emailRow">
+				  </div>
               <button id="copyBtn" class="btn secondary" type="button">COPY</button>
-            </div>
-            <div class="emailRow">
               <button id="openMailBtn" class="btn" type="button">OPEN EMAIL APP</button>
             </div>
             <p class="tiny muted">On iOS, the button opens Mail. Attach your file and hit send.</p>
-          </div>
-
-          <div id="status" class="status" aria-live="polite">Waiting.</div>
 
           <details class="agreements-toggle">
             <summary>View submission agreements</summary>
@@ -305,7 +300,6 @@ Submitted audio may be shared freely online and used by others.
 Submissions will be curated, and not all sounds may appear in the final release.
 
 If you do not agree to these terms, please do not send audio.</div>
-            <p class="tiny muted">Tip: short fragments are best. Any format is okay.</p>
           </details>
         </div>
       </section>
