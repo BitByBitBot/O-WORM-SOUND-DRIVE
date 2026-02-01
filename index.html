@@ -19,14 +19,18 @@
     }
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: Georgia, "Times New Roman", Times, serif;
+    html{
       background-color:var(--bg);
       background-image:url('background.png');
       background-position:center;
       background-repeat:no-repeat;
       background-size:cover;
+    }
+    body{
+      margin:0;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      background-color:transparent;
+      min-height:100dvh;
       color:var(--fg);
       -webkit-font-smoothing: antialiased;
     }
@@ -230,7 +234,7 @@ If you do not agree to these terms, please do not send audio.</div>
           <p>This portal collects original sounds for a community sample release.</p>
           <p class="muted">Free to the public. Shared freely online.</p>
           <div class="rule"></div>
-          <p class="tiny muted">If you want to include a name/handle for credits, add it in the email body.</p>
+          <p class="tiny muted">If you want to include a first name for credits, add it in the email body.</p>
         </div>
       </section>
     </main>
@@ -281,7 +285,7 @@ If you do not agree to these terms, please do not send audio.</div>
     const BODY = [
       AGREEMENTS,
       "---",
-      "(Optional) Name / handle for credit:",
+      "(Optional) First name for credit:",
       "(Optional) Notes about the sound:",
       ""
     ].join("\n\n");
